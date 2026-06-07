@@ -62,7 +62,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
             href={`/news${value !== 'all' ? `?category=${value}` : ''}`}
             className={`rounded-full px-3 py-1 text-sm font-medium transition-colors ${
               (category === value) || (value === 'all' && !params.category)
-                ? 'bg-blue-600 text-white'
+                ? 'bg-pink-600 text-white'
                 : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-slate-200'
             }`}
           >
@@ -76,7 +76,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
         <div className="rounded-xl border border-slate-800 bg-slate-900/30 p-16 text-center text-slate-500">
           <Bot className="h-12 w-12 mx-auto mb-3 opacity-30" />
           <p>ยังไม่มีข่าวในหมวดนี้</p>
-          <p className="text-sm mt-1">ใช้ <code className="text-blue-400">/ai-news</code> เพื่อดึงข่าวล่าสุด</p>
+          <p className="text-sm mt-1">ใช้ <code className="text-pink-400">/ai-news</code> เพื่อดึงข่าวล่าสุด</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -95,7 +95,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
               href={`/news?${category !== 'all' ? `category=${category}&` : ''}page=${p}`}
               className={`rounded-md px-3 py-1.5 text-sm ${
                 p === page
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-pink-600 text-white'
                   : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
               }`}
             >

@@ -70,7 +70,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
         <header className="mb-6">
           <div className="flex flex-wrap items-center gap-2 mb-3">
             {article.category && (
-              <span className="rounded-full bg-blue-900/50 border border-blue-700 px-2.5 py-0.5 text-xs font-medium text-blue-300">
+              <span className="rounded-full bg-pink-900/50 border border-pink-700 px-2.5 py-0.5 text-xs font-medium text-pink-300">
                 {article.category}
               </span>
             )}
@@ -94,7 +94,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
         </header>
 
         {article.summary_th && (
-          <div className="rounded-lg border-l-4 border-blue-500 bg-slate-900/50 p-4 mb-6">
+          <div className="rounded-lg border-l-4 border-pink-500 bg-slate-900/50 p-4 mb-6">
             <p className="text-slate-300 leading-relaxed">{article.summary_th}</p>
             {article.summary && (
               <p className="mt-2 text-sm text-slate-500 italic">{article.summary}</p>
@@ -110,7 +110,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
             href={article.source_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 rounded-lg border border-blue-700 bg-blue-900/30 px-4 py-2 text-sm font-medium text-blue-400 hover:bg-blue-900/50 transition-colors ml-auto"
+            className="flex items-center gap-1.5 rounded-lg border border-pink-700 bg-pink-900/30 px-4 py-2 text-sm font-medium text-pink-400 hover:bg-pink-900/50 transition-colors ml-auto"
           >
             อ่านบทความต้นฉบับ <ExternalLink className="h-3.5 w-3.5" />
           </a>

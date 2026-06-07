@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #020817;
+  --background: #110008;
   --foreground: #f1f5f9;
 }
 
@@ -29,15 +29,15 @@ body {
 }
 
 .prose-ai a {
-  @apply text-blue-400 hover:text-blue-300 underline;
+  @apply text-pink-400 hover:text-pink-300 underline;
 }
 
 .prose-ai blockquote {
-  @apply border-l-4 border-blue-500 pl-4 italic text-slate-400;
+  @apply border-l-4 border-pink-500 pl-4 italic text-slate-400;
 }
 
 .prose-ai code {
-  @apply bg-slate-800 px-1.5 py-0.5 rounded text-sm font-mono text-blue-300;
+  @apply bg-slate-800 px-1.5 py-0.5 rounded text-sm font-mono text-pink-300;
 }
 
 .prose-ai ul {

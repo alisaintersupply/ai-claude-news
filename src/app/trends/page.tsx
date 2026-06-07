@@ -25,7 +25,7 @@ export default async function TrendsPage() {
     <div className="mx-auto max-w-4xl px-4 py-8">
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-slate-100 mb-2 flex items-center gap-2">
-          <TrendingUp className="h-6 w-6 text-blue-400" />
+          <TrendingUp className="h-6 w-6 text-pink-400" />
           เทรนด์ AI
         </h1>
         <p className="text-slate-400 text-sm">วิเคราะห์แนวโน้มและทิศทาง AI โดย AI Trend Analyzer</p>
@@ -35,7 +35,7 @@ export default async function TrendsPage() {
         <div className="rounded-xl border border-slate-800 bg-slate-900/30 p-16 text-center text-slate-500">
           <Bot className="h-12 w-12 mx-auto mb-3 opacity-30" />
           <p>ยังไม่มีการวิเคราะห์เทรนด์</p>
-          <p className="text-sm mt-1">ใช้ <code className="text-blue-400">/ai-trends</code> เพื่อสร้างรายงานเทรนด์</p>
+          <p className="text-sm mt-1">ใช้ <code className="text-pink-400">/ai-trends</code> เพื่อสร้างรายงานเทรนด์</p>
         </div>
       ) : (
         <div className="space-y-6">

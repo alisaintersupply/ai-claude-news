@@ -15,7 +15,7 @@ const categoryLabels: Record<NewsCategory, string> = {
 
 const categoryColors: Record<NewsCategory, string> = {
   models: 'bg-purple-900/50 text-purple-300 border-purple-700',
-  research: 'bg-blue-900/50 text-blue-300 border-blue-700',
+  research: 'bg-pink-900/50 text-pink-300 border-pink-700',
   industry: 'bg-green-900/50 text-green-300 border-green-700',
   policy: 'bg-orange-900/50 text-orange-300 border-orange-700',
   tools: 'bg-cyan-900/50 text-cyan-300 border-cyan-700',
@@ -45,7 +45,7 @@ export const NewsCard = ({ article, variant = 'default' }: NewsCardProps) => {
         className="flex items-start gap-3 rounded-lg p-3 hover:bg-slate-800/50 transition-colors group"
       >
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-slate-200 group-hover:text-blue-400 transition-colors line-clamp-2">
+          <p className="text-sm font-medium text-slate-200 group-hover:text-pink-400 transition-colors line-clamp-2">
             {article.title_th || article.title}
           </p>
           {timeAgo && <p className="mt-1 text-xs text-slate-500">{timeAgo}</p>}
@@ -56,7 +56,7 @@ export const NewsCard = ({ article, variant = 'default' }: NewsCardProps) => {
   }
 
   return (
-    <article className="rounded-xl border border-slate-800 bg-slate-900/50 p-5 hover:border-slate-700 transition-colors group">
+    <article className="rounded-xl border border-pink-900/40 bg-slate-900/50 p-5 hover:border-pink-800/60 transition-colors group">
       <div className="flex items-center gap-2 mb-3">
         {article.category && (
           <span className={`inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium ${categoryColors[article.category]}`}>
@@ -71,7 +71,7 @@ export const NewsCard = ({ article, variant = 'default' }: NewsCardProps) => {
       </div>
 
       <Link href={`/news/${article.id}`} className="block">
-        <h3 className="font-semibold text-slate-100 group-hover:text-blue-400 transition-colors line-clamp-2 mb-2">
+        <h3 className="font-semibold text-slate-100 group-hover:text-pink-400 transition-colors line-clamp-2 mb-2">
           {article.title_th || article.title}
         </h3>
         {article.title_th && (
@@ -91,7 +91,7 @@ export const NewsCard = ({ article, variant = 'default' }: NewsCardProps) => {
           href={article.source_url}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300 transition-colors ml-auto"
+          className="flex items-center gap-1 text-xs text-pink-400 hover:text-pink-300 transition-colors ml-auto"
           onClick={(e) => e.stopPropagation()}
         >
           ต้นฉบับ <ExternalLink className="h-3 w-3" />
