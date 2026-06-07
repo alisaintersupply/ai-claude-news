@@ -1,0 +1,91 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:arxiv.org)",
+      "WebFetch(domain:openai.com)",
+      "WebFetch(domain:anthropic.com)",
+      "WebFetch(domain:deepmind.google)",
+      "WebFetch(domain:ai.meta.com)",
+      "WebFetch(domain:mistral.ai)",
+      "WebFetch(domain:huggingface.co)",
+      "WebFetch(domain:techcrunch.com)",
+      "WebFetch(domain:theverge.com)",
+      "WebFetch(domain:venturebeat.com)",
+      "WebFetch(domain:wired.com)",
+      "WebFetch(domain:blognone.com)",
+      "WebFetch(domain:techsauce.co)",
+      "WebFetch(domain:paperswithcode.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:vercel.com)",
+      "WebFetch(domain:supabase.com)",
+      "Bash(npm run*)",
+      "Bash(npm install*)",
+      "Bash(npx*)",
+      "Bash(git status*)",
+      "Bash(git log*)",
+      "Bash(git diff*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git push*)",
+      "Bash(Get-Date*)",
+      "Bash(New-Item*)",
+      "Bash(mkdir*)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -NonInteractive -File \".claude\\hooks\\token-warning.ps1\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "WebSearch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -NonInteractive -File \".claude\\hooks\\log-research.ps1\""
+          }
+        ]
+      },
+      {
+        "matcher": "WebFetch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -NonInteractive -File \".claude\\hooks\\log-research.ps1\""
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -NonInteractive -File \".claude\\hooks\\pre-tool-guard.ps1\""
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -NonInteractive -File \".claude\\hooks\\session-notify.ps1\""
+          }
+        ]
+      }
+    ]
+  }
+}
