@@ -6,7 +6,7 @@ import { th } from 'date-fns/locale'
 import { ExternalLink, ArrowLeft, Zap, TrendingUp, Minus } from 'lucide-react'
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import type { ImpactLevel } from '@/lib/types'
+import type { ImpactLevel, NewsArticle } from '@/lib/types'
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -15,13 +15,13 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params
   const supabase = await createServerSupabaseClient()
-  const { data } = await supabase.from('news_articles').select('title, title_th, summary_th').eq('id', id).single()
+  const { data } = await supabase.from('news_articles').select('*').eq('id', id).single()
+  const row = data as NewsArticle | null
 
-  if (!data) return { title: 'ไม่พบบทความ' }
-
+  if (!row) return { title: 'ไม่พบบทความ' }
   return {
-    title: data.title_th || data.title,
-    description: data.summary_th || undefined,
+    title: row.title_th || row.title,
+    description: row.summary_th || undefined,
   }
 }
 
@@ -35,15 +35,16 @@ export default async function NewsDetailPage({ params }: PageProps) {
   const { id } = await params
   const supabase = await createServerSupabaseClient()
 
-  const { data: article } = await supabase
+  const { data: rawArticle } = await supabase
     .from('news_articles')
     .select('*')
     .eq('id', id)
     .single()
 
+  const article = rawArticle as NewsArticle | null
   if (!article) notFound()
 
-  const { data: related } = await supabase
+  const { data: rawRelated } = await supabase
     .from('news_articles')
     .select('*')
     .eq('category', article.category ?? '')
@@ -51,6 +52,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
     .order('published_at', { ascending: false })
     .limit(3)
 
+  const related = (rawRelated ?? []) as NewsArticle[]
   const impact = impactConfig[article.impact]
   const ImpactIcon = impact.icon
 
@@ -125,7 +127,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
         )}
       </article>
 
-      {related && related.length > 0 && (
+      {related.length > 0 && (
         <section className="mt-12">
           <h2 className="text-lg font-semibold text-slate-100 mb-4">ข่าวที่เกี่ยวข้อง</h2>
           <div className="space-y-2">

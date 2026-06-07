@@ -2,6 +2,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { DigestCard } from '@/components/DigestCard'
 import { BookOpen, Bot } from 'lucide-react'
 import type { Metadata } from 'next'
+import type { DigestIssue } from '@/lib/types'
 
 export const metadata: Metadata = {
   title: 'AI Digest',
@@ -11,12 +12,13 @@ export const metadata: Metadata = {
 export default async function DigestPage() {
   const supabase = await createServerSupabaseClient()
 
-  const { data: digests } = await supabase
+  const { data: rawDigests } = await supabase
     .from('digest_issues')
     .select('*')
     .eq('is_published', true)
     .order('issue_date', { ascending: false })
     .limit(20)
+  const digests = (rawDigests ?? []) as DigestIssue[]
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">

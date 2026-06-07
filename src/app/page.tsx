@@ -3,6 +3,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { NewsCard } from '@/components/NewsCard'
 import { DigestCard } from '@/components/DigestCard'
 import { Bot, ArrowRight, Zap } from 'lucide-react'
+import type { NewsArticle, DigestIssue } from '@/lib/types'
 
 export default async function HomePage() {
   const supabase = await createServerSupabaseClient()
@@ -21,8 +22,8 @@ export default async function HomePage() {
       .limit(3),
   ])
 
-  const articles = newsResult.data ?? []
-  const digests = digestResult.data ?? []
+  const articles = (newsResult.data ?? []) as NewsArticle[]
+  const digests = (digestResult.data ?? []) as DigestIssue[]
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">

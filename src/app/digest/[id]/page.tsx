@@ -5,6 +5,7 @@ import { th } from 'date-fns/locale'
 import { Clock, ArrowLeft, BookOpen } from 'lucide-react'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import type { DigestIssue } from '@/lib/types'
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -13,12 +14,13 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params
   const supabase = await createServerSupabaseClient()
-  const { data } = await supabase.from('digest_issues').select('title, title_th, summary_th').eq('id', id).single()
+  const { data } = await supabase.from('digest_issues').select('*').eq('id', id).single()
+  const row = data as DigestIssue | null
 
-  if (!data) return { title: 'ไม่พบ Digest' }
+  if (!row) return { title: 'ไม่พบ Digest' }
   return {
-    title: data.title_th || data.title,
-    description: data.summary_th || undefined,
+    title: row.title_th || row.title,
+    description: row.summary_th || undefined,
   }
 }
 
@@ -33,13 +35,14 @@ export default async function DigestDetailPage({ params }: PageProps) {
   const { id } = await params
   const supabase = await createServerSupabaseClient()
 
-  const { data: digest } = await supabase
+  const { data } = await supabase
     .from('digest_issues')
     .select('*')
     .eq('id', id)
     .eq('is_published', true)
     .single()
 
+  const digest = data as DigestIssue | null
   if (!digest) notFound()
 
   return (
@@ -76,7 +79,6 @@ export default async function DigestDetailPage({ params }: PageProps) {
           )}
         </header>
 
-        {/* Render markdown content as plain text paragraphs */}
         <div className="prose-ai">
           {digest.content_md.split('\n').map((line, i) => {
             if (line.startsWith('# ')) return <h1 key={i} className="text-2xl font-bold text-slate-100 mt-8 mb-4">{line.slice(2)}</h1>

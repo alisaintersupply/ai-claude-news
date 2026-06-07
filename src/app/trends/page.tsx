@@ -4,7 +4,7 @@ import { th } from 'date-fns/locale'
 import { TrendingUp, TrendingDown, Sparkles, Bot } from 'lucide-react'
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import type { TrendItem, EmergingSignal } from '@/lib/types'
+import type { TrendItem, EmergingSignal, TrendAnalysis } from '@/lib/types'
 
 export const metadata: Metadata = {
   title: 'เทรนด์ AI',
@@ -14,11 +14,12 @@ export const metadata: Metadata = {
 export default async function TrendsPage() {
   const supabase = await createServerSupabaseClient()
 
-  const { data: analyses } = await supabase
+  const { data: rawAnalyses } = await supabase
     .from('trend_analyses')
     .select('*')
     .order('period_end', { ascending: false })
     .limit(10)
+  const analyses = (rawAnalyses ?? []) as TrendAnalysis[]
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">

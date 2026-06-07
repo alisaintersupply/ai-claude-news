@@ -1,7 +1,7 @@
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { NewsCard } from '@/components/NewsCard'
 import { Bot } from 'lucide-react'
-import type { NewsCategory } from '@/lib/types'
+import type { NewsCategory, NewsArticle } from '@/lib/types'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -25,7 +25,7 @@ interface PageProps {
 
 export default async function NewsPage({ searchParams }: PageProps) {
   const params = await searchParams
-  const category = (params.category as NewsCategory) || 'all'
+  const category = (params.category as NewsCategory | 'all') || 'all'
   const page = parseInt(params.page || '1', 10)
   const pageSize = 12
 
@@ -41,7 +41,8 @@ export default async function NewsPage({ searchParams }: PageProps) {
     query = query.eq('category', category)
   }
 
-  const { data: articles, count } = await query
+  const { data: rawArticles, count } = await query
+  const articles = (rawArticles ?? []) as NewsArticle[]
   const totalPages = Math.ceil((count ?? 0) / pageSize)
 
   return (
