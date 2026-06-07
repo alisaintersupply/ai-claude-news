@@ -16,11 +16,11 @@ export const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/90 backdrop-blur-sm">
+    <nav className="sticky top-0 z-50 border-b border-pink-900/40 bg-[#110008]/90 backdrop-blur-sm">
       <div className="mx-auto max-w-6xl px-4">
         <div className="flex h-14 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 font-semibold text-slate-100 hover:text-blue-400 transition-colors">
-            <Bot className="h-5 w-5 text-blue-400" />
+          <Link href="/" className="flex items-center gap-2 font-semibold text-slate-100 hover:text-pink-400 transition-colors">
+            <Bot className="h-5 w-5 text-pink-400" />
             <span className="hidden sm:inline">ข่าว AI Claudecode</span>
             <span className="sm:hidden">ข่าว AI</span>
           </Link>
@@ -32,8 +32,8 @@ export const Navbar = () => {
                 href={href}
                 className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
                   pathname?.startsWith(href)
-                    ? 'bg-slate-800 text-blue-400'
-                    : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/50'
+                    ? 'bg-pink-950/60 text-pink-400'
+                    : 'text-slate-400 hover:text-slate-100 hover:bg-pink-950/30'
                 }`}
               >
                 <Icon className="h-4 w-4" />
@@ -52,7 +52,7 @@ export const Navbar = () => {
         </div>
 
         {mobileOpen && (
-          <div className="sm:hidden border-t border-slate-800 py-2 space-y-1">
+          <div className="sm:hidden border-t border-pink-900/40 py-2 space-y-1">
             {navLinks.map(({ href, label, icon: Icon }) => (
               <Link
                 key={href}
@@ -60,7 +60,7 @@ export const Navbar = () => {
                 onClick={() => setMobileOpen(false)}
                 className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium ${
                   pathname?.startsWith(href)
-                    ? 'bg-slate-800 text-blue-400'
+                    ? 'bg-pink-950/60 text-pink-400'
                     : 'text-slate-400 hover:text-slate-100'
                 }`}
               >
