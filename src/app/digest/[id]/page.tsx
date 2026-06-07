@@ -58,8 +58,8 @@ export default async function DigestDetailPage({ params }: PageProps) {
       <article>
         <header className="mb-6">
           <div className="flex items-center gap-2 mb-3">
-            <BookOpen className="h-4 w-4 text-blue-400" />
-            <span className="text-sm text-blue-400">{typeLabels[digest.type] || digest.type}</span>
+            <BookOpen className="h-4 w-4 text-pink-400" />
+            <span className="text-sm text-pink-400">{typeLabels[digest.type] || digest.type}</span>
             <span className="text-slate-600">·</span>
             <span className="text-sm text-slate-500">
               {format(new Date(digest.issue_date), 'd MMMM yyyy', { locale: th })}
@@ -75,7 +75,7 @@ export default async function DigestDetailPage({ params }: PageProps) {
           </h1>
 
           {digest.summary_th && (
-            <p className="text-slate-400 border-l-4 border-blue-500 pl-4">{digest.summary_th}</p>
+            <p className="text-slate-400 border-l-4 border-pink-500 pl-4">{digest.summary_th}</p>
           )}
         </header>
 
@@ -84,7 +84,7 @@ export default async function DigestDetailPage({ params }: PageProps) {
             if (line.startsWith('# ')) return <h1 key={i} className="text-2xl font-bold text-slate-100 mt-8 mb-4">{line.slice(2)}</h1>
             if (line.startsWith('## ')) return <h2 key={i} className="text-xl font-semibold text-slate-100 mt-6 mb-3">{line.slice(3)}</h2>
             if (line.startsWith('### ')) return <h3 key={i} className="text-lg font-medium text-slate-200 mt-4 mb-2">{line.slice(4)}</h3>
-            if (line.startsWith('> ')) return <blockquote key={i} className="border-l-4 border-blue-500 pl-4 italic text-slate-400 my-3">{line.slice(2)}</blockquote>
+            if (line.startsWith('> ')) return <blockquote key={i} className="border-l-4 border-pink-500 pl-4 italic text-slate-400 my-3">{line.slice(2)}</blockquote>
             if (line.startsWith('- ')) return <li key={i} className="ml-4 text-slate-300 my-1">{line.slice(2)}</li>
             if (line === '---') return <hr key={i} className="border-slate-700 my-6" />
             if (line === '') return <div key={i} className="my-2" />
